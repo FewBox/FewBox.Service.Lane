@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { autobind } from 'core-decorators';
 import { reSignIn } from '../../actions';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 
@@ -49,8 +50,10 @@ class SignIn extends React.PureComponent<ISignIn> {
                     <Col span={5}></Col>
                     <Col span={14}>
                         <Row gutter={12}>
-                            <Col span={12}><img src="/assets/images/signin.png" /></Col>
+                            <Col span={12}><div className="background"></div></Col>
                             <Col span={12}>
+                                <h4><FormattedMessage id="Label.SignInTitle" /></h4>
+                                <p><FormattedMessage id="Label.SignInDescription" /></p>
                                 <Form layout="inline" onSubmit={this.signIn}>
                                     <Tabs defaultActiveKey="1">
                                         <TabPane tab={<FormattedMessage id="Label.JWT" />} key="1">
@@ -75,13 +78,15 @@ class SignIn extends React.PureComponent<ISignIn> {
                                                 })(
                                                     <Checkbox><FormattedMessage id="Label.RememberMe" /></Checkbox>
                                                 )}
-                                                <Button type="link">
+                                                <Link to="/recoverpassword">
                                                     <FormattedMessage id="Label.ForgotPassword" />
-                                                </Button>
+                                                </Link>
                                             </Form.Item>
                                             <Form.Item>
                                                 <Button>
-                                                    <FormattedMessage id="Label.SignUp" />
+                                                    <Link to="/signup">
+                                                        <FormattedMessage id="Label.SignUp" />
+                                                    </Link>
                                                 </Button>
                                                 <Button type="primary" htmlType="submit" className="login-form-button" disabled={hasErrors(getFieldsError())} loading={this.props.isSignInButtonLoading}>
                                                     <FormattedMessage id="Label.SignIn" />
